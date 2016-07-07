@@ -1,0 +1,19 @@
+/*
+  Place all the styles related to the matching controller here.
+  They will automatically be included in application.css.
+*/
+
+.node {
+  fill: #fff;
+  stroke: #88f;
+  stroke-width: 0.1em;
+}
+
+.link {
+  stroke: #777;
+  stroke-width: 0.1em;
+}
+
+.node-text {
+  fill: #333;
+}

@@ -1,0 +1,19 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title netBF-viz
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    %nav{class: 'navbar navbar-inverse'}
+      %div{class: 'container-fluid'}
+        %div{class: 'navbar-header'}
+          %a{class: 'navbar-brand', href: '#'} netBF-viz
+
+        %div{class: 'pull-right navbar-header'}
+          %a{class: 'navbar-brand', href: 'http://github.com/gbudiman/netbf-viz', target: '_netbf-viz'} 
+            GitHub
+            %span{class: 'glyphicon glyphicon-new-window'}
+    = yield

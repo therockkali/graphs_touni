@@ -1,0 +1,6 @@
+%div{class: 'col-xs-3'}
+  = render 'graph_input'
+%div{class: 'col-xs-9', id: 'viz-base'}
+  = render 'graph_viz'
+
+= javascript_include_tag 'graph_input'
