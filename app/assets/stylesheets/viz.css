@@ -5,8 +5,8 @@
 
 .node {
   fill: #fff;
-  stroke: #88f;
-  stroke-width: 0.1em;
+  stroke: #1E72AD;
+  stroke-width: 0.2em;
 }
 
 .link {
@@ -15,5 +15,12 @@
 }
 
 .node-text {
-  fill: #333;
+  fill: #1E72AD;
+  stroke-width: 0.05em;
 }
+
+.link-label {
+  stroke-width: 0.05em;
+}
+
+// 30 114 173
