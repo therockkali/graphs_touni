@@ -9,6 +9,9 @@
   stroke-width: 0.2em;
 }
 
+.node:hover {
+  cursor: pointer;
+}
 .link {
   stroke: #777;
   stroke-width: 0.1em;
