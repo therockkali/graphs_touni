@@ -36,3 +36,9 @@ $('#graph-load-example').on('click', function() {
 })
 
 $('#graph-draw-button').trigger('click');
+
+$('#unfix-position-button').on('click', function() {
+  //svg.selectAll('.node').classed('fixed', false);
+  force.nodes().forEach(function(d) { d.fixed = false; });
+  $('#unfix-position').css('visibility', 'hidden');
+})

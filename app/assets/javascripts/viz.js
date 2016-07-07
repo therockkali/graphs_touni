@@ -1,10 +1,12 @@
 var weight_label_coeff = 5;
 var weight_diff_coeff = 180;
+var force;
+var svg;
 function viz(graph) {
   d3.select('svg').remove();
 
   var width = height = 800;
-  var svg = d3.select('#viz-base')
+  svg = d3.select('#viz-base')
               .append('svg')
               .attr('width', width)
               .attr('height', height);
@@ -12,15 +14,17 @@ function viz(graph) {
   var nodes = graph.nodes;
   var links = graph.links;
 
-  var force = d3.layout.force()
+  force = d3.layout.force()
                 .size([width, height])
                 .nodes(nodes)
                 .links(links);
+  var drag = force.drag().on('dragstart', dragstart);
 
   force.charge(-20000)
        .gravity(1)
+       //.linkDistance(function(d) { return d.weight * 25; })
        .linkDistance(256)
-       .linkStrength(1)
+       .linkStrength(0.8)
        .friction(0.2);;
 
   /////////////////////////////////////
@@ -41,7 +45,7 @@ function viz(graph) {
     .append("path")
       .attr("d", "M0,-5L10,0L0,5 L10,0 L0, -5")
       .style("stroke", "#111")
-      .style('stroke-width', '0.2em');
+      .style('stroke-width', '0.1em');
 
   /////////////////////////////////////
   /////////////////////////////////////
@@ -75,7 +79,7 @@ function viz(graph) {
   var node_enter = node.enter().append('g')
       .attr('class', 'node')
       .attr('node-id', function(d) { return d.id; })
-      .call(force.drag)
+      .call(drag)
       .on('click', connectedNodes);
 
   node_enter.insert('svg:circle')
@@ -125,6 +129,22 @@ function viz(graph) {
   })
 
   force.start();
+
+  function dragstart(d, i) {
+    d.fixed = true;
+    $('#unfix-position')
+      .css('visibility', 'visible');
+    //force.stop();
+  }
+
+  function dragend(d, i) {
+    d.fixed = true;
+    force.resume();
+  }
+
+  function releasenode(d) {
+    d.fixed = false;
+  }
 
   //////////////////////////
   // Code adapted from
@@ -221,4 +241,3 @@ function viz(graph) {
     }
   }
 }
-
