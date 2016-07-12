@@ -1,25 +1,29 @@
 $('#graph-draw-button').on('click', function() {
   var graph = {
     nodes: [],
-    links: []
+    links: [],
+    edges: []
   }
 
   var rows = $('#graph-input').val().trim().split(/[\r\n]/);
 
   $.each(rows, function(i, x) {
     graph.nodes.push({ id: i });
+    graph.edges.push({ id: i, edges: [] })
 
     $.each(x.split(/\,/), function(j, y) {
       if (y[0] == '*') {
       } else {
         if (i != j) {
           graph.links.push({ source: i, target: j, weight: y });
+          graph.edges[i].edges.push({ target: j, weight: parseInt(y) });
         }
       }
     })
   })
 
   viz(graph);
+  bellman_ford_solver(graph);
 })
 
 $('#graph-load-example').on('click', function() {
