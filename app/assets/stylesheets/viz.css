@@ -25,3 +25,28 @@
 .link-label {
   stroke-width: 0.05em;
 }
+
+.header-path, .header-dist {
+  font-weight: bold;
+  text-align: right;
+  border-bottom: 0.1em dashed #ccc;
+  padding-top: 0.4em;
+  padding-bottom: 0.4em;
+}
+
+.body-path {
+  text-align: right;
+}
+
+.body-dist {
+  text-align: right;
+}
+
+#graph-input {
+  font-family: monospace;
+}
+
+.left-container {
+  height: 100vh;
+  overflow-y: auto;
+}

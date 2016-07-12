@@ -2,7 +2,8 @@ $('#graph-draw-button').on('click', function() {
   var graph = {
     nodes: [],
     links: [],
-    edges: []
+    edges: [],
+    paths: []
   }
 
   var rows = $('#graph-input').val().trim().split(/[\r\n]/);
@@ -10,6 +11,7 @@ $('#graph-draw-button').on('click', function() {
   $.each(rows, function(i, x) {
     graph.nodes.push({ id: i });
     graph.edges.push({ id: i, edges: [] })
+    graph.paths.push(new Array());
 
     $.each(x.split(/\,/), function(j, y) {
       if (y[0] == '*') {
@@ -24,6 +26,7 @@ $('#graph-draw-button').on('click', function() {
 
   viz(graph);
   bellman_ford_solver(graph);
+  display_solution(graph);
 })
 
 $('#graph-load-example').on('click', function() {

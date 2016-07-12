@@ -59,6 +59,7 @@ function viz(graph) {
       .attr('class', 'link-line')
       .attr('source', function(d) { return d.source; })
       .attr('target', function(d) { return d.target; })
+      .attr('data-st', function(d) { return d.source + '-' + d.target; })
       .attr('x1', function(d) { return nodes[d.source].x; })
       .attr('y1', function(d) { return nodes[d.source].y; })
       .attr('x2', function(d) { return nodes[d.target].x; })
@@ -69,6 +70,7 @@ function viz(graph) {
       .attr('class', 'link-label')
       .attr('source', function(d) { return d.source; })
       .attr('target', function(d) { return d.target; })
+      .attr('data-st', function(d) { return d.source + '-' + d.target; })
       .text(function(d) {
         return d.weight;
       })
@@ -192,9 +194,9 @@ function viz(graph) {
       var hid = d['id'];
       toggled_index = hid;
 
-      $('.link-label').attr('opacity', 0.1);
-      $('.link-label[source=' + hid + ']').attr('opacity', 1);
-      $('.link-label[target=' + hid + ']').attr('opacity', 1);
+      $('.link-label').css('opacity', 0.1);
+      $('.link-label[source=' + hid + ']').css('opacity', 1);
+      $('.link-label[target=' + hid + ']').css('opacity', 1);
       $('.node')
         .css('fill', '#fff')
         .css('stroke', '#1E72AD')

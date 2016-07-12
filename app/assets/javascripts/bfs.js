@@ -3,8 +3,6 @@ function bellman_ford_solver(graph) {
   var preds = new Array();
   var graph_length = graph.nodes.length;
 
-  console.log(graph);
-
   var initialize_bfs = function() {
     for (var i = 0; i < graph_length; i++) {
       dists[i] = null;
@@ -38,10 +36,6 @@ function bellman_ford_solver(graph) {
       }
     })
 
-    // console.log(dists);
-    // console.log(preds);
-    // console.log('----');
-
     return changes_made;
   }
 
@@ -53,19 +47,14 @@ function bellman_ford_solver(graph) {
           continue;
         } else {
           changes_made += process_edges(i);
-
-
         }
       }
-
-      console.log(changes_made + ' changes made');
-      console.log(dists);
-      console.log(preds);
-      console.log('---');
-
       return changes_made;
     }
 
     while (iterate() > 0);
   }();
+
+  graph.dists = dists;
+  graph.preds = preds;
 }
