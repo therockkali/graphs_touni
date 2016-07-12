@@ -232,7 +232,7 @@ function viz(graph) {
       node.style("opacity", 1);
       link.style("opacity", 1);
       toggle = 0;
-      $('.link-label').attr('opacity', 1);
+      $('.link-label').css('opacity', 1);
       $('.node')
         .css('fill', '#fff')
         .css('stroke', '#1E72AD')

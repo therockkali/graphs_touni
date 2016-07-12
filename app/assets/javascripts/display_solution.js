@@ -78,7 +78,7 @@ function display_solution(graph) {
         s_path.append(" &raquo; ").append(t);
       }
 
-      s_dist_link.attr('href', '#dne')
+      s_dist_link.attr('href', '#')
         .attr('data-id', id)
         .text(graph.dists[id]);
 
