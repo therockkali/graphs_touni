@@ -39,13 +39,17 @@ function display_solution(graph) {
   }
 
   var denormalized_paths = function() {
+    console.log(graph);
     $.each(graph.preds, function(node_id, pred_id) {
-      graph.paths[node_id].push(pred_id);
+      if (pred_id === null) {
+      } else {
+        graph.paths[node_id].push(pred_id);
 
-      var traverse_pred_id = pred_id;
-      while (traverse_pred_id != 0) {
-        traverse_pred_id = traverse_path(traverse_pred_id);
-        graph.paths[node_id].push(traverse_pred_id);
+        var traverse_pred_id = pred_id;
+        while (traverse_pred_id != 0) {
+          traverse_pred_id = traverse_path(traverse_pred_id);
+          graph.paths[node_id].push(traverse_pred_id);
+        }
       }
     });
   }();
@@ -72,19 +76,24 @@ function display_solution(graph) {
       t.append(id);
 
       s_path.addClass('col-xs-10 body-path');
-      s_path.append(data.reverse().join(" &raquo; "));
 
-      if (id != 0) {
-        s_path.append(" &raquo; ").append(t);
+      if (data.length == 0) {
+        s_path.append('No route from 0 to ' + id);
+        s_dist.append('INF');
+      } else {
+        s_path.append(data.reverse().join(" &raquo; "));
+
+        if (id != 0) {
+          s_path.append(" &raquo; ").append(t);
+        }
+
+        s_dist_link.attr('href', '#sp')
+          .attr('data-id', id)
+          .text(graph.dists[id]);
+
+        s_dist.addClass('col-xs-2 body-dist');
+        s_dist.append(s_dist_link);      
       }
-
-      s_dist_link.attr('href', '#')
-        .attr('data-id', id)
-        .text(graph.dists[id]);
-
-      s_dist.addClass('col-xs-2 body-dist');
-      s_dist.append(s_dist_link);
-
       $('#solution').append(s_path).append(s_dist);
     })
 
