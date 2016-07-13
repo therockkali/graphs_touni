@@ -50,3 +50,7 @@
   height: 100vh;
   overflow-y: auto;
 }
+
+.path-link {
+  font-weight: bold;
+}

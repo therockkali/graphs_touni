@@ -69,30 +69,34 @@ function display_solution(graph) {
 
     $.each(graph.paths, function(id, data) {
       var s_path = $('<div>');
+      var s_path_link = $('<a>');
       var s_dist = $('<div>');
-      var s_dist_link = $('<a>');
+      // var s_dist_link = $('<a>');
 
       var t = $('<strong>');
       t.append(id);
 
       s_path.addClass('col-xs-10 body-path');
+      s_path_link.addClass('path-link');
 
       if (data.length == 0) {
-        s_path.append('No route from 0 to ' + id);
+        s_path.append('No route to ' + id);
         s_dist.append('INF');
       } else {
-        s_path.append(data.reverse().join(" &raquo; "));
+        
+        s_path_link.attr('href', '#sp')
+          .attr('data-id', id)
+          .text(id);
 
         if (id != 0) {
-          s_path.append(" &raquo; ").append(t);
+          s_path.append(data.reverse().join(" &raquo; "));
+          s_path.append(" &raquo; ").append(s_path_link);
+        } else {
+          s_path.append(s_path_link);
         }
 
-        s_dist_link.attr('href', '#sp')
-          .attr('data-id', id)
-          .text(graph.dists[id]);
-
         s_dist.addClass('col-xs-2 body-dist');
-        s_dist.append(s_dist_link);      
+        s_dist.append(graph.dists[id]);      
       }
       $('#solution').append(s_path).append(s_dist);
     })
